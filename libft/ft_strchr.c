@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mvogel <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 16:41:11 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/12 15:18:29 by mvogel           ###   ########lyon.fr   */
+/*   Created: 2022/11/09 14:46:27 by mvogel            #+#    #+#             */
+/*   Updated: 2022/11/09 14:46:29 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_printf("okstart\n");
-	parsing(argc, argv);
-	ft_printf("okend\n");
-	// check_error(argv);
-	// normalize_list
-	// solver()
+	size_t	a;
+
+	a = 0;
+	while (a <= ft_strlen(s))
+	{
+		if (s[a] == (char)c)
+			return (((char *) s) + a);
+		a++;
+	}
 	return (0);
 }

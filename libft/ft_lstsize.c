@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 16:41:11 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/12 15:18:29 by mvogel           ###   ########lyon.fr   */
+/*   Created: 2022/11/21 13:47:22 by mvogel            #+#    #+#             */
+/*   Updated: 2023/01/12 17:26:24 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-	ft_printf("okstart\n");
-	parsing(argc, argv);
-	ft_printf("okend\n");
-	// check_error(argv);
-	// normalize_list
-	// solver()
-	return (0);
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

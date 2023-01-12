@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 16:41:11 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/12 15:18:29 by mvogel           ###   ########lyon.fr   */
+/*   Created: 2022/12/01 12:32:17 by mvogel            #+#    #+#             */
+/*   Updated: 2023/01/12 15:14:48 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+# include <stdarg.h>
+# include <unistd.h>
+# include "../libft/libft.h"
 
-int	main(int argc, char **argv)
-{
-	ft_printf("okstart\n");
-	parsing(argc, argv);
-	ft_printf("okend\n");
-	// check_error(argv);
-	// normalize_list
-	// solver()
-	return (0);
-}
+int		ft_printf(const char *txt, ...);
+int		flag_type(va_list arg, const char *txt);
+int		print_pt(unsigned long x);
+int		print_hexa(unsigned int x, int upper);
+int		print_nbr(int i);
+int		print_unsigned(unsigned int u);
+void	ft_putlongnbr_fd(long n, int fd);
+
+#endif
