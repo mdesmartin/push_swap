@@ -6,22 +6,23 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/12 17:12:44 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/16 17:28:25 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parsing(int argc, char **argv)
+char	**parsing(int argc, char **argv)
 {
 	char	*str;
 	char	**strr;
 	int		i;
+	t_list chain;
 
 	i = 1;
 	str = malloc(sizeof(char));
 	if (!str)
-		return ;
+		return (NULL);
 	str[0] = '\0';
 	while (i < argc)
 	{
@@ -29,17 +30,10 @@ void	parsing(int argc, char **argv)
 		str = ft_strjoin(str, " ");
 		i++;
 	}
-	ft_printf("okjoin:%s\n", str);//
 	error_numb(str);
 	strr = ft_split(str, ' ');
 	error_dup(strr);
-//
-	i = 0;
-	while (strr[i])
-	{
-		ft_printf("oktab:%s:\n", strr[i]);
-		i++;
-	}
+	return (strr);
 }
 
 void	error_numb(char *str)
