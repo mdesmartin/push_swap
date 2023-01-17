@@ -6,66 +6,71 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/16 17:28:25 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 17:15:32 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**parsing(int argc, char **argv)
+// char	*normalize(char **tab, char *str)
+// {
+// 	int	value;
+// 	int	i;
+
+// 	i = 0;
+// 	value = 0;
+// 	while (tab[i])
+// 	{
+// 		if (str > tab[i])
+// 			value++;
+// 		i++;
+// 	}
+// 	return (ft_itoa(value));
+// }
+
+char	*index(char	*tab)
 {
-	char	*str;
-	char	**strr;
+	int	index;
+	
+}
+
+void	check_error(char *tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (((tab[i] == '+' || tab[i] == '-')
+				&& (tab[i + 1] == '+' || tab[i + 1] == '-'))
+			|| (!(ft_isdigit(tab[i])) && tab[i] != '+'
+				&& tab[i] != '-' && tab[i] != ' '))
+			return (ft_putstr_fd("Error\n", 2), exit(0));
+		i++;
+	}
+}
+
+void	parsing(int argc, char **argv, t_list **a)
+{
+	char	**tab;
 	int		i;
-	t_list chain;
+	int		c;
 
-	i = 1;
-	str = malloc(sizeof(char));
-	if (!str)
-		return (NULL);
-	str[0] = '\0';
-	while (i < argc)
+	c = 1;
+	tab = NULL;
+	while (c < argc)
 	{
-		str = ft_strjoin(str, argv[i]);
-		str = ft_strjoin(str, " ");
-		i++;
-	}
-	error_numb(str);
-	strr = ft_split(str, ' ');
-	error_dup(strr);
-	return (strr);
-}
-
-void	error_numb(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!(ft_isdigit(str[i]))
-			&& str[i] != '+' && str[i] != '-' && str[i] != ' ')
-			return (ft_putstr_fd("Error\n", 2));
-		i++;
-	}
-}
-
-void	error_dup(char **strr)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (strr[i])
-	{
-		while (strr[i][j])
+		i = 0;
+		tab = ft_split(argv[c], ' ');
+		while (tab[i])
 		{
-			if ((strr[i][j] == '+' || strr[i][j] == '-')
-				&& (strr[i][j + 1] == '+' || strr[i][j + 1] == '-'))
-				return (ft_putstr_fd("Error\n", 2));
-			j++;
+			check_error(tab[i]);
+			if (*a == NULL)
+				*a = ft_lstnew(tab[i]);
+			else
+				ft_lstadd_back(a, ft_lstnew(tab[i]));
+			i++;
 		}
-		i++;
+		c++;
 	}
 }

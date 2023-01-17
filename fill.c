@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:52:05 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/16 17:56:55 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/17 13:03:58 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	fill(t_list **a, char **strr)
 {
 	int	i;
-	
+
 	i = 0;
 	while (strr[i])
 	{
