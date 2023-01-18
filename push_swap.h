@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:32:21 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/17 15:46:27 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 17:27:52 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 void	parsing(int argc, char **argv, t_list **a);
 void	check_error(char *tab);
-char	*normalize(char **tab, char *str);
+void	normalize(t_list **stack);
 
 #endif

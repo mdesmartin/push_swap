@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 16:41:11 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/17 16:40:53 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/18 18:01:16 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int	main(int argc, char **argv)
 	a = malloc(sizeof(t_list *));
 	*a = NULL;
 	parsing(argc, argv, a);
+	// normalize(a);
 	tmp = *a;
 	while (tmp)
 	{
 		ft_printf("value :%s\n", tmp->content);
+		ft_printf("index :%d\n", tmp->index);
 		ft_printf("current : %p\n", tmp);
 		ft_printf("next : %p\n", tmp->next);
 		tmp = tmp->next;
