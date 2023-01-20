@@ -3,93 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/18 17:57:15 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/19 16:48:46 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	rotate(t_list **a)
-// {
-// 	t_list	*first;
-// 	t_list	*second;
+int	normalize(t_list **a)
+{
+	t_list	*i;
+	t_list	*j;
+	int		nb_arg;
+	int		index;
 
-// 	first = *a;
-// 	second = (*a)->next;
-// 	ft_lstadd_back(&a, first);
-// 	*a = second;
-// 	first->next = NULL;
-// }
-
-// void	swap(t_list **from, t_list **to)
-// {
-	
-// }
-
-// void	push(t_list **from, t_list **to)
-// {
-// 	if (!from || !to)
-// 		return ;
-// 	ft_lstadd_front(to, *from);
-// }
-
-// int	is_sorted(t_list **a)
-// {
-// 	return 0 si pas sorted
-// }
-
-// void	radix_sort(t_list **a, t_list **b, int nb_arg)
-// {
-// 	int	i;
-// 	int	nb_b;
-
-// 	i = 1;
-// 	nb_b = 0;
-// 	while (!(is_sorted(a)))
-// 	{
-// 		while (i < nb_arg)
-// 		{
-// 			if ((*a->index) >> i & 1)
-// 				rotate_a(a); // keep 1
-// 			else
-// 			{
-// 				push_b(a, b); // b keep 0
-// 				nb_b++;
-// 			}
-// 			i++;
-// 		}
-// 		while (nb_b)
-// 		{
-// 			push_a(a, b);
-// 			nb_b--;
-// 		}
-// 	}
-// }
-
-// void	normalize(t_list **a)
-// {
-// 	t_list	*i;
-// 	t_list	*j;
-// 	int		index;
-
-// 	i = *a;
-// 	while (i)
-// 	{
-// 		index = 0;
-// 		j = *a;
-// 		while (j)
-// 		{
-// 			if (ft_atoi(i->content) > ft_atoi(j->content))
-// 				index++;
-// 			j = j->next;
-// 		}
-// 		i->index = index;
-// 		i = i->next;
-// 	}
-// }
+	nb_arg = 0;
+	i = *a;
+	while (i)
+	{
+		index = 0;
+		j = *a;
+		while (j)
+		{
+			if (ft_atoi(i->content) > ft_atoi(j->content))
+				index++;
+			j = j->next;
+		}
+		i->index = index;
+		nb_arg++;
+		i = i->next;
+	}
+	return (nb_arg);
+}
 
 void	check_error(char *tab)
 {
@@ -107,7 +54,7 @@ void	check_error(char *tab)
 	}
 }
 
-void	parsing(int argc, char **argv, t_list **a)
+int	parsing(int argc, char **argv, t_list **a)
 {
 	char	**tab;
 	int		i;
@@ -130,5 +77,5 @@ void	parsing(int argc, char **argv, t_list **a)
 		}
 		c++;
 	}
-	// radix_sort(a, b, nb_arg);
+	return (normalize(a));
 }

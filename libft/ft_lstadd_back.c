@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:54:06 by mvogel            #+#    #+#             */
-/*   Updated: 2022/11/21 13:54:08 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/13 16:44:26 by mehdidesmar      ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
-{
+{ 
 	t_list	*last;
 
 	if (!lst || !new)
