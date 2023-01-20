@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/19 16:48:46 by mehdidesmar      ###   ########lyon.fr   */
+/*   Updated: 2023/01/20 18:02:41 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,37 @@ int	normalize(t_list **a)
 	return (nb_arg);
 }
 
+void	check_duplicate(t_list **a)
+{
+	t_list	*i;
+	t_list	*j;
+
+	i = *a;
+	while (i)
+	{
+		j = *a;
+		while (j)
+		{
+			if (ft_atoi(i->content) == ft_atoi(j->content) && i != j)
+				return (ft_putstr_fd("Error\n", 2), exit(0));
+			j = j->next;
+		}
+		i = i->next;
+	}
+	return ;
+}
+
 void	check_error(char *tab)
 {
 	int	i;
 
 	i = 0;
+	ft_printf("%d\n",ft_atoi(tab));
+	if (ft_atoi(tab) < INT_MIN || ft_atoi(tab) > INT_MAX || ft_strlen(tab) > 11)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit(0);
+	}
 	while (tab[i])
 	{
 		if (((tab[i] == '+' || tab[i] == '-')
@@ -77,5 +103,6 @@ int	parsing(int argc, char **argv, t_list **a)
 		}
 		c++;
 	}
+	check_duplicate(a);
 	return (normalize(a));
 }

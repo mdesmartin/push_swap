@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mehdidesmartin <mehdidesmartin@student.    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 16:41:11 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/19 16:54:02 by mehdidesmar      ###   ########lyon.fr   */
+/*   Created: 2023/01/20 11:23:21 by mvogel            #+#    #+#             */
+/*   Updated: 2023/01/20 13:09:05 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ int	main(int argc, char **argv)
 	nb_arg = parsing(argc, argv, a);
 	sort(a, b, nb_arg);
 	tmp = *a;
-	while (tmp)
-	{
-		ft_printf("value :%s\n", tmp->content);
-		ft_printf("index :%d\n", tmp->index);
-		ft_printf("current : %p\n", tmp);
-		printf("next : %p\n", tmp->next);
-		tmp = tmp->next;
-	}
+	// while (tmp)
+	// {
+	// 	ft_printf("value :%s\n", tmp->content);
+	// 	ft_printf("index :%d\n", tmp->index);
+	// 	ft_printf("current : %p\n", tmp);
+	// 	printf("next : %p\n", tmp->next);
+	// 	tmp = tmp->next;
+	// }
 }

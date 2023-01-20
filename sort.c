@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/20 11:23:14 by mvogel            #+#    #+#             */
+/*   Updated: 2023/01/20 14:16:40 by mvogel           ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -66,7 +77,7 @@ void	radix(t_list **a, t_list **b, int nb_arg)
 		while (i < nb_arg)
 		{
 			if (((*a)->index) >> j & 1)
-				rotate(a, "ra\n"); // keep 1
+				rotate(a, "ra\n"); // a keep 1
 			else
 				push(a, b, "pb\n"); // b keep 0
 			i++;
@@ -81,14 +92,14 @@ void	sort(t_list **a, t_list **b, int nb_arg)
 {
 	if (nb_arg > 1)
 	{
-		ft_printf("-- plus de cinq --\n");
+		// ft_printf("-- plus de cinq --\n");
 		radix(a, b, nb_arg);
 	}
 	// else if (nb_arg == 3)
 	// 	three_arg(a, b);
 	else if (nb_arg == 2 && !is_sorted(a))
 	{
-		ft_printf("-- deux --\n");
+		// ft_printf("-- deux --\n");
 		rotate(a, "ra\n");
 	}
 	else
