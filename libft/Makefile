@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvogel <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:20:33 by mvogel            #+#    #+#              #
-#    Updated: 2022/11/17 17:08:42 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/01/23 14:01:43 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS = -Wall -Wextra -Werror
 ARFLAGS = rc
 
 SRC = ft_atoi.c \
+	ft_atoi_long.c \
 	ft_isalpha.c \
 	ft_isprint.c \
     ft_memcpy.c \

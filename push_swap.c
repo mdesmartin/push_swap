@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:23:21 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/20 13:09:05 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 14:49:56 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int	main(int argc, char **argv)
 {
 	t_list	**a;
 	t_list	**b;
-	t_list	*tmp;
+	// t_list	*tmp;
 	int		nb_arg;
-	// t_list	*actions;
 
 	a = malloc(sizeof(t_list *));
 	if (!a)
@@ -29,8 +28,8 @@ int	main(int argc, char **argv)
 	*a = NULL;
 	*b = NULL;
 	nb_arg = parsing(argc, argv, a);
-	sort(a, b, nb_arg);
-	tmp = *a;
+	sorting(a, b, nb_arg);
+	// tmp = *a;
 	// while (tmp)
 	// {
 	// 	ft_printf("value :%s\n", tmp->content);

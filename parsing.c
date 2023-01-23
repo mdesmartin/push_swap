@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/20 18:02:41 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/23 14:41:55 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	normalize(t_list **a)
 		j = *a;
 		while (j)
 		{
-			if (ft_atoi(i->content) > ft_atoi(j->content))
+			if (ft_atoi_long(i->content) > ft_atoi_long(j->content))
 				index++;
 			j = j->next;
 		}
@@ -49,7 +49,7 @@ void	check_duplicate(t_list **a)
 		j = *a;
 		while (j)
 		{
-			if (ft_atoi(i->content) == ft_atoi(j->content) && i != j)
+			if (ft_atoi_long(i->content) == ft_atoi_long(j->content) && i != j)
 				return (ft_putstr_fd("Error\n", 2), exit(0));
 			j = j->next;
 		}
@@ -58,23 +58,19 @@ void	check_duplicate(t_list **a)
 	return ;
 }
 
-void	check_error(char *tab)
+void	check_error(char *str)
 {
 	int	i;
 
 	i = 0;
-	ft_printf("%d\n",ft_atoi(tab));
-	if (ft_atoi(tab) < INT_MIN || ft_atoi(tab) > INT_MAX || ft_strlen(tab) > 11)
+	if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX)
+		return (ft_putstr_fd("Error\n", 2), exit(0));
+	while (str[i])
 	{
-		ft_putstr_fd("Error\n", 2);
-		exit(0);
-	}
-	while (tab[i])
-	{
-		if (((tab[i] == '+' || tab[i] == '-')
-				&& (tab[i + 1] == '+' || tab[i + 1] == '-'))
-			|| (!(ft_isdigit(tab[i])) && tab[i] != '+'
-				&& tab[i] != '-' && tab[i] != ' '))
+		if (((str[i] == '+' || str[i] == '-')
+				&& (str[i + 1] == '+' || str[i + 1] == '-'))
+			|| (!(ft_isdigit(str[i])) && str[i] != '+'
+				&& str[i] != '-' && str[i] != ' '))
 			return (ft_putstr_fd("Error\n", 2), exit(0));
 		i++;
 	}

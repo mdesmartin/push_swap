@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mvogel <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/25 09:25:35 by mvogel            #+#    #+#              #
-#    Updated: 2022/11/25 09:25:37 by mvogel           ###   ########lyon.fr    #
+#    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
+#    Updated: 2023/01/23 15:59:20 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = libftprintf.a
+NAME = push_swap
 
-HEADER = ft_printf.h
+HEADER = push_swap.h
 
 CC = gcc
 
@@ -21,9 +21,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 ARFLAGS = rc
 
-SRC = ft_printf.c \
-	convert_n_print.c \
-	ft_printf_utils.c \
+SRC = push_swap.c \
+	parsing.c \
+	sorting.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -37,6 +37,7 @@ $(NAME): $(OBJ)
 
 clean:
 	$(RM) $(OBJ)
+	$(RM) $(OBJ_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -44,4 +45,4 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
