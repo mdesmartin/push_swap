@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/17 13:20:33 by mvogel            #+#    #+#              #
-#    Updated: 2023/01/23 14:01:43 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/01/25 16:45:10 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,35 +55,28 @@ SRC = ft_atoi.c \
     ft_putstr_fd.c \
     ft_putendl_fd.c \
     ft_putnbr_fd.c \
-
-SRC_BONUS = ft_lstnew.c \
-		ft_lstadd_front.c \
-		ft_lstsize.c \
-		ft_lstlast.c \
-		ft_lstadd_back.c \
-		ft_lstdelone.c \
-		ft_lstclear.c \
-		ft_lstiter.c \
-		ft_lstmap.c \
+	ft_lstnew.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstdelone.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstmap.c \
 
 OBJ = $(SRC:.c=.o)
-
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
 
-bonus: $(OBJ) $(OBJ_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ) $(OBJ_BONUS)
-
 %.o: %.c Makefile $(HEADER)
 	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
 	$(RM) $(OBJ)
-	$(RM) $(OBJ_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -91,4 +84,4 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re

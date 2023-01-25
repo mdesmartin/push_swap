@@ -6,48 +6,13 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:23:14 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/23 17:53:37 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/01/25 17:33:03 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_list **stack, char *instruct)
-{
-	t_list	*first;
-	t_list	*second;
-
-	if (!stack)
-		return ;
-	first = *stack;
-	second = (*stack)->next;
-	ft_lstadd_back(stack, first);
-	*stack = second;
-	first->next = NULL;
-	ft_putstr_fd(instruct, 1);
-}
-
-void	r_rotate(t_list **stack, char *instruct);
-
-void	push(t_list **from, t_list **to, char *instruct)
-{
-	t_list	*first_from;
-	t_list	*second_from;
-	t_list	*first_to;
-
-	if (!from || !to)
-		return ;
-	first_from = *from;
-	second_from = (*from)->next;
-	first_to = *to;
-	ft_lstadd_front(to, first_from);
-	*from = second_from;
-	*to = first_from;
-	first_from->next = first_to;
-	ft_putstr_fd(instruct, 1);
-}
-
-int	is_sorted(t_list **a)
+static int	is_sorted(t_list **a)
 {
 	t_list	*i;
 	t_list	*j;
@@ -67,7 +32,7 @@ int	is_sorted(t_list **a)
 	return (1);
 }
 
-void	radix(t_list **a, t_list **b, int nb_arg)
+static void	radix(t_list **a, t_list **b, int nb_arg)
 {
 	int	i;
 	int	j;
@@ -79,9 +44,9 @@ void	radix(t_list **a, t_list **b, int nb_arg)
 		while (i < nb_arg)
 		{
 			if (((*a)->index) >> j & 1)
-				rotate(a, "ra\n"); // a keep 1
+				rotate(a, "ra\n");
 			else
-				push(a, b, "pb\n"); // b keep 0
+				push(a, b, "pb\n");
 			i++;
 		}
 		while (*b)
@@ -90,18 +55,7 @@ void	radix(t_list **a, t_list **b, int nb_arg)
 	}
 }
 
-//find the smaller index and locate it in the half
-//then put it in b by ra or rra
-//do the same for every index exept the three last
-//sort the three lasts and then push a
-
-void	small_sort(t_list **a, t_list **b, int nb_arg);
-{
-	half_sorting(a, nb_arg, 0);
-	
-}
-
-int	half_sorting(t_list **a, t_list **b, int nb_arg, int index)
+static int	half_sorting(t_list **a, t_list **b, int nb_arg, int index)
 {
 	t_list	*i;
 	t_list	*j;
@@ -118,22 +72,42 @@ int	half_sorting(t_list **a, t_list **b, int nb_arg, int index)
 			i = i->next;
 		}
 		if (x < (nb_arg / 2))
-			while (j->index != index)
-				rotate(a, "ra");
+			while ((*a)->index != index)
+				rotate(a, "ra\n");
 		else
-			while (j->index != index)
-				r_rotate(a, "rra");
-		push(a, b, "pb");
+			while ((*a)->index != index)
+				r_rotate(a, "rra\n");
+		push(a, b, "pb\n");
 	}
 	else
 		return (0);
 	return (half_sorting(a, b, nb_arg, index + 1));
 }
 
+static void	small_sort(t_list **a, t_list **b, int nb_arg)
+{
+	if (nb_arg > 3)
+		half_sorting(a, b, nb_arg, 0);
+	if ((*a)->next->index > (*a)->index
+		&& (*a)->next->index > (*a)->next->next->index)
+		r_rotate(a, "rra\n");
+	if ((*a)->index > (*a)->next->next->index)
+		rotate(a, "ra\n");
+	if ((*a)->index > (*a)->next->index
+		&& (*a)->index < (*a)->next->next->index)
+		swap(a, "sa\n");
+	while (*b)
+		push(b, a, "pa\n");
+}
+
 void	sorting(t_list **a, t_list **b, int nb_arg)
 {
-	if (nb_arg < 25)
+	if (nb_arg == 2 && !is_sorted(a))
+		rotate(a, "ra\n");
+	else if (nb_arg <= 50 && nb_arg > 2 && !is_sorted(a))
 		small_sort(a, b, nb_arg);
-	else
+	else if (nb_arg > 50 && !is_sorted(a))
 		radix(a, b, nb_arg);
+	else
+		return ;
 }

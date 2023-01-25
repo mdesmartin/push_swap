@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/01/23 15:59:20 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/01/25 16:44:11 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,30 +19,39 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-ARFLAGS = rc
-
 SRC = push_swap.c \
 	parsing.c \
 	sorting.c \
+	instruct.c
 
 OBJ = $(SRC:.c=.o)
 
+LIB_PATH = libft/
+
+LIB_NAME = libft.a
+
+LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJ)
+lib :
+	make -C $(LIB_PATH)
+
+$(NAME): $(OBJ) lib
+	$(CC) $(OBJ) $(LIB) -o $(NAME)
 
 %.o: %.c Makefile $(HEADER)
 	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
 	$(RM) $(OBJ)
-	$(RM) $(OBJ_BONUS)
+	make clean -C $(LIB_PATH)
 
 fclean: clean
 	$(RM) $(NAME)
+	make fclean -C $(LIB_PATH)
 
 re: fclean
 	$(MAKE) all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus clean fclean re lib
