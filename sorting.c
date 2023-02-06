@@ -61,6 +61,7 @@ static int	half_sorting(t_list **a, t_list **b, int nb_arg, int index)
 	t_list	*j;
 	int		x;
 
+	(void) j;
 	i = *a;
 	x = 0;
 	if (index < nb_arg - 3)

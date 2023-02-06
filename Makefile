@@ -1,4 +1,4 @@
-# **************************************************************************** #
+	# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -15,7 +15,7 @@ NAME = push_swap
 
 HEADER = push_swap.h
 
-CC = gcc
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -32,16 +32,17 @@ LIB_NAME = libft.a
 
 LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
-all: $(NAME)
+all: lib
+	make $(NAME)
 
 lib :
 	make -C $(LIB_PATH)
 
-$(NAME): $(OBJ) lib
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIB) -o $(NAME)
 
 %.o: %.c Makefile $(HEADER)
-	$(CC) $(CFLAGS) -I $(HEADER) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	$(RM) $(OBJ)

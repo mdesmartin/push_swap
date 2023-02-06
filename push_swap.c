@@ -21,6 +21,7 @@ static void	free_del(void *content)
 static void	del(void *content)
 {
 	content = NULL;
+	(void) content;
 }
 
 void	exit_after_sort(t_list **a, t_list **b)
