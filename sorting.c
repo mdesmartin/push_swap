@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:23:14 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/25 17:33:03 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/07 14:11:31 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,12 @@ static void	radix(t_list **a, t_list **b, int nb_arg)
 static int	half_sorting(t_list **a, t_list **b, int nb_arg, int index)
 {
 	t_list	*i;
-	t_list	*j;
 	int		x;
 
-	(void) j;
 	i = *a;
 	x = 0;
 	if (index < nb_arg - 3)
 	{
-		j = *a;
 		while (i->index != index)
 		{
 			x++;
