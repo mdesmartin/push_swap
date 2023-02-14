@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/01/25 16:44:11 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/02/14 15:44:50 by mvogel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ HEADER = push_swap.h
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 SRC = push_swap.c \
 	parsing.c \
 	sorting.c \
-	instruct.c
+	instruct.c \
+	free_n_exit.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -32,8 +33,7 @@ LIB_NAME = libft.a
 
 LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
-all: lib
-	make $(NAME)
+all: lib $(NAME)
 
 lib :
 	make -C $(LIB_PATH)
@@ -41,7 +41,7 @@ lib :
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(LIB) -o $(NAME)
 
-%.o: %.c Makefile $(HEADER)
+%.o: %.c  $(HEADER) #Makefile ?
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:

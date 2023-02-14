@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/25 17:07:29 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/14 17:52:30 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ static void	check_duplicate(t_list **a, t_list **b)
 		while (j)
 		{
 			if (ft_atoi_long(i->content) == ft_atoi_long(j->content) && i != j)
-			{
-				ft_putstr_fd("Error\n", 2);
-				exit_after_sort(a, b);
-			}
+				return (display_error(a, b));
 			j = j->next;
 		}
 		i = i->next;
@@ -61,30 +58,33 @@ static void	check_duplicate(t_list **a, t_list **b)
 	return ;
 }
 
-static void	check_error(char *str, t_list **a, t_list **b)
+static void	check_error(char *str, t_list **a, t_list **b, char **tab)
 {
 	int	i;
 
 	i = 0;
 	if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX
 		|| ft_strlen(str) > 11)
-	{
-		free(str);
-		ft_putstr_fd("Error\n", 2);
-		exit_after_sort(a, b);
-	}
+		return (free_tab(tab), display_error(a, b));
 	while (str[i])
 	{
 		if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1]))
 				&& str[i - 1] != ' ') || (!(ft_isdigit(str[i]))
 				&& str[i] != '+' && str[i] != '-' && str[i] != ' '))
-		{
-			free(str);
-			ft_putstr_fd("Error\n", 2);
-			exit_after_sort(a, b);
-		}
+			return (free_tab(tab), display_error(a, b));
 		i++;
 	}
+	return ;
+}
+
+void	error_tab(char **tab, t_list **a, t_list **b)
+{
+	if (!tab)
+		return (display_error(a, b));
+	else if (tab[0] == NULL)
+		return (free_tab(tab), display_error(a, b));
+	else
+		return ;
 }
 
 int	parsing(int argc, char **argv, t_list **a, t_list **b)
@@ -99,9 +99,10 @@ int	parsing(int argc, char **argv, t_list **a, t_list **b)
 	{
 		i = 0;
 		tab = ft_split(argv[c], ' ');
+		error_tab(tab, a, b);
 		while (tab[i])
 		{
-			check_error(tab[i], a, b);
+			check_error(tab[i], a, b, tab);
 			if (*a == NULL)
 				*a = ft_lstnew(tab[i]);
 			else
@@ -111,6 +112,5 @@ int	parsing(int argc, char **argv, t_list **a, t_list **b)
 		c++;
 		free(tab);
 	}
-	check_duplicate(a, b);
-	return (normalize(a));
+	return (check_duplicate(a, b), normalize(a));
 }
