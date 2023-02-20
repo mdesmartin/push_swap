@@ -6,13 +6,13 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:32:21 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/14 17:54:14 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/20 14:55:32 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft/libft.h"
+# include "libft.h"
 
 int		parsing(int argc, char **argv, t_list **a, t_list **b);
 void	sorting(t_list **a, t_list **b, int nb_arg);

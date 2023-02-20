@@ -1,4 +1,4 @@
-	# **************************************************************************** #
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
@@ -6,53 +6,65 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/14 15:44:50 by mvogel           ###   ########.fr        #
+#    Updated: 2023/02/20 15:14:50 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = push_swap
 
-HEADER = push_swap.h
+HDR_PATH = include/
 
-CC = cc
+HDR_LST = push_swap.h
 
-CFLAGS = -Wall -Wextra -Werror -g3
+HDR = $(addprefix $(HDR_PATH), $(HDR_LST))
 
-SRC = push_swap.c \
-	parsing.c \
-	sorting.c \
-	instruct.c \
-	free_n_exit.c
+SRC_PATH = src/
+
+SRC_LST = push_swap.c \
+		parsing.c \
+		sorting.c \
+		instruct.c \
+		free_n_exit.c
+
+SRC = $(addprefix $(SRC_PATH), $(SRC_LST))
+
+LIBFT_PATH = libft/
+
+LIBFT_NAME = libft.a
+
+LIBFT = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
 
 OBJ = $(SRC:.c=.o)
 
-LIB_PATH = libft/
+CFLAGS = -Wall -Wextra -Werror -I $(LIBFT_PATH) -I $(HDR_PATH)
 
-LIB_NAME = libft.a
+##
 
-LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
+all: libft
+	$(MAKE) $(NAME)
 
-all: lib $(NAME)
+%.o : %.c $(HDR)
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
-lib :
-	make -C $(LIB_PATH)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $^ -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIB) -o $(NAME)
+libft :
+	$(MAKE) -C $(LIBFT_PATH)
 
-%.o: %.c  $(HEADER) #Makefile ?
-	$(CC) $(CFLAGS) -o $@ -c $<
+##
 
-clean:
+clean :
+	$(MAKE) -C $(LIBFT_PATH) clean
 	$(RM) $(OBJ)
-	make clean -C $(LIB_PATH)
 
-fclean: clean
+fclean : clean
+	$(MAKE) -C $(LIBFT_PATH) fclean
 	$(RM) $(NAME)
-	make fclean -C $(LIB_PATH)
 
-re: fclean
+re : fclean
 	$(MAKE) all
 
-.PHONY: all bonus clean fclean re lib
+.PHONY: all libft clean fclean re
+ 
