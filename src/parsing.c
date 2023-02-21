@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/20 14:55:56 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/21 14:23:34 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	check_duplicate(t_list **a, t_list **b)
 		while (j)
 		{
 			if (ft_atoi_long(i->content) == ft_atoi_long(j->content) && i != j)
-				return (display_error(a, b));
+				return (display_error(a, b, 1));
 			j = j->next;
 		}
 		i = i->next;
@@ -65,24 +65,23 @@ static void	check_error(char *str, t_list **a, t_list **b, char **tab)
 	i = 0;
 	if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX
 		|| ft_strlen(str) > 11)
-		return (free_tab(tab), display_error(a, b));
+		return (free_tab(tab), display_error(a, b, 0));
 	while (str[i])
 	{
-		if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1]))
-				&& str[i - 1] != ' ') || (!(ft_isdigit(str[i]))
-				&& str[i] != '+' && str[i] != '-' && str[i] != ' '))
-			return (free_tab(tab), display_error(a, b));
+		if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
+			|| (!(ft_isdigit(str[i])) && str[i] != '+' && str[i] != '-'))
+			return (free_tab(tab), display_error(a, b, 0));
 		i++;
 	}
 	return ;
 }
 
-void	error_tab(char **tab, t_list **a, t_list **b)
+static void	error_tab(char **tab, t_list **a, t_list **b)
 {
 	if (!tab)
-		return (display_error(a, b));
+		return (display_error(a, b, 1));
 	else if (tab[0] == NULL)
-		return (free_tab(tab), display_error(a, b));
+		return (free_tab(tab), display_error(a, b, 0));
 	else
 		return ;
 }

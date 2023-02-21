@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:52:58 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/20 14:55:49 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/21 14:14:58 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,22 @@ static void	del(void *content)
 	(void) content;
 }
 
-void	free_n_exit(t_list **a, t_list **b)
+void	free_n_exit(t_list **a, t_list **b, int fre)
 {
-	ft_lstclear(a, free_del);
+	if (fre == 0)
+		ft_lstclear(a, del);
+	else
+		ft_lstclear(a, free_del);
 	ft_lstclear(b, del);
 	free(a);
 	free(b);
 	exit(0);
 }
 
-void	display_error(t_list **a, t_list **b)
+void	display_error(t_list **a, t_list **b, int fre)
 {
 	ft_putstr_fd("Error\n", 2);
-	free_n_exit(a, b);
+	free_n_exit(a, b, fre);
 }
 
 void	*free_tab(char **tab)

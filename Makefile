@@ -6,10 +6,11 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/20 15:14:50 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/02/21 12:42:59 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
+# ------------------------------- VARIABLES ---------------------------------- #
 
 NAME = push_swap
 
@@ -39,10 +40,9 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -I $(LIBFT_PATH) -I $(HDR_PATH)
 
-##
+# ------------------------------- COMPILE ------------------------------------ #
 
-all: libft
-	$(MAKE) $(NAME)
+all: $(NAME)
 
 %.o : %.c $(HDR)
 	$(CC) $(CFLAGS) -c $< -o $@ 
@@ -50,10 +50,12 @@ all: libft
 $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $^ -o $@
 
-libft :
+$(LIBFT) : FORCE
 	$(MAKE) -C $(LIBFT_PATH)
 
-##
+FORCE :
+
+# ------------------------------- CLEAN -------------------------------------- #
 
 clean :
 	$(MAKE) -C $(LIBFT_PATH) clean
@@ -66,5 +68,5 @@ fclean : clean
 re : fclean
 	$(MAKE) all
 
-.PHONY: all libft clean fclean re
+.PHONY: all libft FORCE clean fclean re
  
