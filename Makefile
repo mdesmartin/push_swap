@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/21 12:42:59 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/02/21 15:50:16 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ CFLAGS = -Wall -Wextra -Werror -I $(LIBFT_PATH) -I $(HDR_PATH)
 
 all: $(NAME)
 
-%.o : %.c $(HDR)
+%.o : %.c Makefile $(HDR)
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 $(NAME): $(OBJ) $(LIBFT)

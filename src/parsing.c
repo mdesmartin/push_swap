@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/21 14:23:34 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/21 16:57:32 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ static void	check_duplicate(t_list **a, t_list **b)
 	return ;
 }
 
+void	if_free(t_list **a, t_list **b, char **tab)
+{
+	t_list	*l = *a;
+
+	if (l->content != NULL)
+		return (free_tab(tab), display_error(a, b, 1));
+	else
+		return (free_tab(tab), display_error(a, b, 0));
+
+}
+
 static void	check_error(char *str, t_list **a, t_list **b, char **tab)
 {
 	int	i;
@@ -70,7 +81,7 @@ static void	check_error(char *str, t_list **a, t_list **b, char **tab)
 	{
 		if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
 			|| (!(ft_isdigit(str[i])) && str[i] != '+' && str[i] != '-'))
-			return (free_tab(tab), display_error(a, b, 0));
+			return (if_free(a, b, tab));
 		i++;
 	}
 	return ;
