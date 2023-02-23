@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 15:10:07 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/07 13:27:25 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 13:30:50 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		l_s2;
 	char	*str;
 
+	// if (s1 != NULL)
+	// 	free (s1);
 	l_s1 = ft_strlen(s1);
 	l_s2 = ft_strlen(s2);
 	str = malloc(sizeof(char) * (l_s1 + l_s2 + 1));

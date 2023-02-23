@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/21 16:57:32 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 13:27:20 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	check_duplicate(t_list **a, t_list **b)
 		while (j)
 		{
 			if (ft_atoi_long(i->content) == ft_atoi_long(j->content) && i != j)
-				return (display_error(a, b, 1));
+				return (display_error(a, b));
 			j = j->next;
 		}
 		i = i->next;
@@ -58,69 +58,83 @@ static void	check_duplicate(t_list **a, t_list **b)
 	return ;
 }
 
-void	if_free(t_list **a, t_list **b, char **tab)
+static void	check_arg(t_list **a, t_list **b)
 {
-	t_list	*l = *a;
+	t_list	*l_cp;
+	char	*str;
+	int		i;
 
-	if (l->content != NULL)
-		return (free_tab(tab), display_error(a, b, 1));
-	else
-		return (free_tab(tab), display_error(a, b, 0));
-
-}
-
-static void	check_error(char *str, t_list **a, t_list **b, char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX
-		|| ft_strlen(str) > 11)
-		return (free_tab(tab), display_error(a, b, 0));
-	while (str[i])
+	l_cp = *a;
+	while (l_cp)
 	{
-		if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
-			|| (!(ft_isdigit(str[i])) && str[i] != '+' && str[i] != '-'))
-			return (if_free(a, b, tab));
-		i++;
+		str = l_cp->content;
+		if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX
+			|| ft_strlen(str) > 11)
+			return (display_error(a, b));
+		while (str[i])
+		{
+			if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
+				|| (!(ft_isdigit(str[i])) && str[i] != '+' && str[i] != '-'))
+				return (display_error(a, b));
+			i++;
+		}
+		l_cp = l_cp->next;
 	}
 	return ;
 }
 
-static void	error_tab(char **tab, t_list **a, t_list **b)
+void	create_chain(t_list **a, char **tab)
 {
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		if (*a == NULL)
+			*a = ft_lstnew(tab[i]);
+		else
+			ft_lstadd_back(a, ft_lstnew(tab[i]));
+		i++;
+	}
+	free (tab);
+	return ;
+}
+
+char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
+{
+	char	*str;
+	char	**tab;
+	int		i;
+
+	str = NULL;
+	tab = NULL;
+	i = 1;
+	while (i < argc)
+	{
+		str = add_to_stash(str, argv[i]);
+		if (!str)
+			display_error(a, b);
+		// str = ft_strjoin(str, " ");
+		// if (!str)
+		// 	display_error(a, b);
+		i++;
+	}
+	tab = ft_split(str, ' ');
+	free (str);
 	if (!tab)
-		return (display_error(a, b, 1));
-	else if (tab[0] == NULL)
-		return (free_tab(tab), display_error(a, b, 0));
-	else
-		return ;
+		display_error(a, b);
+	return (tab);
 }
 
 int	parsing(int argc, char **argv, t_list **a, t_list **b)
 {
 	char	**tab;
-	int		i;
-	int		c;
+	int		nb_arg;
 
-	c = 1;
-	tab = NULL;
-	while (c < argc)
-	{
-		i = 0;
-		tab = ft_split(argv[c], ' ');
-		error_tab(tab, a, b);
-		while (tab[i])
-		{
-			check_error(tab[i], a, b, tab);
-			if (*a == NULL)
-				*a = ft_lstnew(tab[i]);
-			else
-				ft_lstadd_back(a, ft_lstnew(tab[i]));
-			i++;
-		}
-		c++;
-		free(tab);
-	}
-	return (check_duplicate(a, b), normalize(a));
+	tab = create_tab(argc, argv, a, b);
+	create_chain(a, tab);
+	check_arg(a, b);
+	check_duplicate(a, b);
+	nb_arg = normalize(a);
+	return (nb_arg);
 }

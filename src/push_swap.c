@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 11:23:21 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/21 14:13:59 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 13:06:56 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	main(int argc, char **argv)
 	*a = NULL;
 	*b = NULL;
 	sorting(a, b, parsing(argc, argv, a, b));
-	free_n_exit(a, b, 1);
+	free_n_exit(a, b);
 }
