@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mdesmartin <mdesmartin@student.42lyon.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/23 13:27:20 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/23 21:25:10 by mdesmartin       ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	check_arg(t_list **a, t_list **b)
 		if (ft_atoi_long(str) < INT_MIN || ft_atoi_long(str) > INT_MAX
 			|| ft_strlen(str) > 11)
 			return (display_error(a, b));
+		i = 0;
 		while (str[i])
 		{
 			if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
@@ -106,17 +107,19 @@ char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
 	char	**tab;
 	int		i;
 
-	str = NULL;
+	str = malloc(sizeof(char));
+	if (!str)
+		display_error(a, b);
 	tab = NULL;
 	i = 1;
 	while (i < argc)
 	{
-		str = add_to_stash(str, argv[i]);
+		str = ft_strjoin(str, argv[i]);
 		if (!str)
 			display_error(a, b);
-		// str = ft_strjoin(str, " ");
-		// if (!str)
-		// 	display_error(a, b);
+		str = ft_strjoin(str, " ");
+		if (!str)
+			display_error(a, b);
 		i++;
 	}
 	tab = ft_split(str, ' ');
