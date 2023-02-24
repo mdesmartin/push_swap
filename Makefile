@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/21 15:50:16 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/02/24 11:06:17 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_LST = push_swap.c \
 		parsing.c \
 		sorting.c \
 		instruct.c \
-		free_n_exit.c
+		free_n_exit.c \
+		check_error.c
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_LST))
 

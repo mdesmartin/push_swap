@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:48:04 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/23 13:33:46 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/24 10:52:44 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-
 	while (s[i])
 		i++;
 	return (i);

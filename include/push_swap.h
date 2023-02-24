@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:32:21 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/23 13:06:52 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/24 11:05:45 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ void	push(t_list **from, t_list **to, char *instruct);
 void	display_error(t_list **a, t_list **b);
 void	free_n_exit(t_list **a, t_list **b);
 void	*free_tab(char **tab);
+void	check_malloc(char *str, t_list **a, t_list **b);
+void	check_arg(t_list **a, t_list **b);
+void	check_duplicate(t_list **a, t_list **b);
 
 #endif
