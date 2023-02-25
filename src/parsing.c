@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: mdesmartin <mdesmartin@student.42lyon.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/24 11:11:51 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/25 13:14:41 by mdesmartin       ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,33 @@ void	create_chain(t_list **a, char **tab)
 	return ;
 }
 
+char	*join_to_str(char *str, char *arg, t_list **a, t_list **b)
+{
+	char	*dst;
+	int		digit;
+	int		i;
+
+	i = 0;
+	digit = 0;
+	while (arg[i] != '\0')
+	{
+		digit += ft_isdigit(arg[i]);
+		i++;
+	}
+	if (arg[0] == '\0' || digit == 0)
+	{
+		free(str);
+		display_error(a, b);
+	}
+	dst = ft_strjoin(str, arg);
+	check_malloc(dst, a, b);
+	dst = ft_strjoin(dst, " ");
+	check_malloc(dst, a, b);
+	free(str);
+	str = NULL;
+	return (dst);
+}
+
 char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
 {
 	char	*str;
@@ -69,10 +96,8 @@ char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
 	i = 1;
 	while (i < argc)
 	{
-		str = add_to_stash(str, argv[i]);
-		check_malloc(str, a, b);
-		str = add_to_stash(str, " ");
-		check_malloc(str, a, b);
+		str = join_to_str(str, argv[i], a, b);
+		check_malloc(str, a, b);//
 		i++;
 	}
 	tab = ft_split(str, ' ');
