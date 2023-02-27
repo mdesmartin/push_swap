@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:04:02 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/24 11:05:54 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 15:05:44 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	check_arg(t_list **a, t_list **b)
 		i = 0;
 		while (str[i])
 		{
-			if (((str[i] == '-' || str[i] == '+') && !(ft_isdigit(str[i + 1])))
-				|| (!(ft_isdigit(str[i])) && str[i] != '+' && str[i] != '-'))
+			if (((str[i] == '-' || str[i] == '+') && (!(ft_isdigit(str[i + 1])) \
+			|| ft_isdigit(str[i -1]))) || (!(ft_isdigit(str[i])) \
+			&& str[i] != '+' && str[i] != '-'))
 				return (display_error(a, b));
 			i++;
 		}

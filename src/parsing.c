@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/27 13:39:43 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 15:08:17 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	create_chain(t_list **a, t_list **b, char **tab)
 		}
 		i++;
 	}
-	free(tab);//
+	free(tab);
 	return ;
 }
 
