@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:04:40 by mvogel            #+#    #+#             */
-/*   Updated: 2023/01/18 17:58:09 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 13:41:55 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_list	*ft_lstnew(void *content)
 
 	new = NULL;
 	new = malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
 	if (new)
 	{
 		new->content = content;

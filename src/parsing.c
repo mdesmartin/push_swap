@@ -6,7 +6,7 @@
 /*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/27 12:33:17 by mvogel           ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 13:39:43 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	normalize(t_list **a)
 	return (nb_arg);
 }
 
-void	create_chain(t_list **a, char **tab)
+void	create_chain(t_list **a, t_list **b, char **tab)
 {
 	int	i;
 
@@ -46,12 +46,18 @@ void	create_chain(t_list **a, char **tab)
 	while (tab[i])
 	{
 		if (*a == NULL)
+		{
 			*a = ft_lstnew(tab[i]);
+			if (!*a)
+				return (free_tab(tab), display_error(a, b));
+		}
 		else
+		{
 			ft_lstadd_back(a, ft_lstnew(tab[i]));
+		}
 		i++;
 	}
-	free(tab);
+	free(tab);//
 	return ;
 }
 
@@ -73,12 +79,14 @@ char	*join_to_str(char *str, char *arg, t_list **a, t_list **b)
 		free(str);
 		display_error(a, b);
 	}
+	dst = NULL;
 	dst = ft_strjoin(str, arg);
+	free (str);
 	check_malloc(dst, a, b);
-	free(str);
+	str = NULL;
 	str = ft_strjoin(dst, " ");
-	check_malloc(str, a, b);
 	free(dst);
+	check_malloc(str, a, b);
 	return (str);
 }
 
@@ -111,7 +119,7 @@ int	parsing(int argc, char **argv, t_list **a, t_list **b)
 	int		nb_arg;
 
 	tab = create_tab(argc, argv, a, b);
-	create_chain(a, tab);
+	create_chain(a, b, tab);
 	check_arg(a, b);
 	check_duplicate(a, b);
 	nb_arg = normalize(a);

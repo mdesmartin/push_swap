@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdesmartin <mdesmartin@student.42lyon.f    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:17:19 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/25 13:01:30 by mdesmartin       ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 13:40:08 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
