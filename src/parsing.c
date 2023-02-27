@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdesmartin <mdesmartin@student.42lyon.f    +#+  +:+       +#+        */
+/*   By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:32:57 by mvogel            #+#    #+#             */
-/*   Updated: 2023/02/25 13:14:41 by mdesmartin       ###   ########lyon.fr   */
+/*   Updated: 2023/02/27 12:33:17 by mvogel           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	normalize(t_list **a)
 	}
 	return (nb_arg);
 }
-
 
 void	create_chain(t_list **a, char **tab)
 {
@@ -76,11 +75,11 @@ char	*join_to_str(char *str, char *arg, t_list **a, t_list **b)
 	}
 	dst = ft_strjoin(str, arg);
 	check_malloc(dst, a, b);
-	dst = ft_strjoin(dst, " ");
-	check_malloc(dst, a, b);
 	free(str);
-	str = NULL;
-	return (dst);
+	str = ft_strjoin(dst, " ");
+	check_malloc(str, a, b);
+	free(dst);
+	return (str);
 }
 
 char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
@@ -97,7 +96,6 @@ char	**create_tab(int argc, char **argv, t_list **a, t_list **b)
 	while (i < argc)
 	{
 		str = join_to_str(str, argv[i], a, b);
-		check_malloc(str, a, b);//
 		i++;
 	}
 	tab = ft_split(str, ' ');
