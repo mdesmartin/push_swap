@@ -6,7 +6,7 @@
 #    By: mvogel <mvogel@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 14:39:47 by mvogel            #+#    #+#              #
-#    Updated: 2023/02/24 11:06:17 by mvogel           ###   ########lyon.fr    #
+#    Updated: 2023/03/02 16:36:45 by mvogel           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HDR = $(addprefix $(HDR_PATH), $(HDR_LST))
 
 SRC_PATH = src/
 
-SRC_LST = push_swap.c \
+SRC_LST = main.c \
 		parsing.c \
 		sorting.c \
 		instruct.c \
