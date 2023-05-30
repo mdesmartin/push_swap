@@ -11,6 +11,6 @@ The primary goal of Push_swap is to implement an efficient sorting algorithm for
 - Visualization: Push_swap offers a visual representation of the sorting process, allowing users to observe the stack transformations and the operations performed.
 - Optimization strategies: The program incorporates various optimization techniques, such as sorting subsets of the stack separately and choosing the most efficient operation sequence based on predefined rules.
 
-By working on Push_swap, you will gain valuable experience in algorithm design, optimization strategies, and problem-solving techniques. It challenges your ability to analyze and manipulate data structures efficiently, providing a practical application of sorting algorithms in a constrained environment.
+*By working on Push_swap, you will gain valuable experience in algorithm design, optimization strategies, and problem-solving techniques. It challenges your ability to analyze and manipulate data structures efficiently, providing a practical application of sorting algorithms in a constrained environment.*
 
 **Note:** This project was developed as part of the 42 school curriculum and should be considered a learning exercise rather than a comprehensive sorting algorithm for general use.
